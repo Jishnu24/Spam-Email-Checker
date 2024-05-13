@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Spam Email Prediction</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif; /* Added font-family for better readability */
+        }
+
+        h1 {
+            color: #333; /* Changed h1 color for better contrast */
+        }
+
+        button {
+            color: white; /* Changed button text color */
+            background-color: #007bff; /* Changed button background color */
+            padding: 10px 20px; /* Added padding for better button appearance */
+            border: none; /* Removed button border */
+            cursor: pointer; /* Added cursor pointer for better interaction */
+            transition: background-color 0.3s ease; /* Added transition effect */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker background color on hover */
+        }
+
+        a {
+            color: #007bff; /* Changed link color */
+            text-decoration: none; /* Removed underline from link */
+            margin-left: 10px; /* Added margin for better spacing */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Added style for textarea */
+        textarea {
+            width: 80%;
+            margin: 20px auto; /* Center textarea */
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc; /* Added border for better visibility */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        /* Added style for prediction text */
+        .prediction {
+            margin-top: 20px; /* Added margin for separation */
+            font-size: 18px;
+        }
+
+        /* Added style for Spam prediction */
+        .spam {
+            color: red;
+        }
+
+        /* Added style for Not Spam prediction */
+        .not-spam {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Email Spam Classifier</h1>
+    <div>
+        <form method="post" action="/predict">
+            <textarea rows="12" cols="60" name="content" placeholder="Enter your email here"
+                autocomplete="off">{{ email }}</textarea>
+            <div>
+                <button type="submit">Submit</button>
+                <a href="/">Reset</a>
+            </div>
+        </form>
+    </div>
+    <div class="prediction">
+        {% if prediction %}
+            {% if prediction == 1 %}
+                <h2 class="spam">Spam</h2>
+            {% else %}
+                <h2 class="not-spam">Not Spam</h2>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+
+</html>
